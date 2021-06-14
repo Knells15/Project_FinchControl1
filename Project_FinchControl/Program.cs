@@ -35,7 +35,6 @@ namespace Project_FinchControl
             DisplayClosingScreen();
 
             MyName();
-
  
         }
 
@@ -187,189 +186,6 @@ namespace Project_FinchControl
 
         /// <summary>
         /// *****************************************************************
-        /// *                     Data Recorder Menu                        *
-        /// *****************************************************************
-        /// </summary>
-        static void DataRecorderDisplayMenuScreen(Finch finchRobot)
-        {
-            Console.CursorVisible = true;
-
-            bool quitDataRecorderMenu = false;
-            string menuChoice;
-
-            do
-            {
-                DisplayScreenHeader("Data Recorder Menu");
-                Console.WriteLine("This module is currently under development and some choices may not work.");
-                //
-                // get user menu choice
-                //
-                Console.WriteLine("\ta) Under Construction ");
-                Console.WriteLine("\tb) Under Construction ");
-                Console.WriteLine("\tc) Under Construction ");
-                Console.WriteLine("\td) Under Construction ");
-                Console.WriteLine("\tq) Main Menu");
-                Console.Write("\t\tEnter Choice:");
-                menuChoice = Console.ReadLine().ToLower();
-
-                //
-                // process user menu choice
-                //
-                switch (menuChoice)
-                {
-                    case "a":
-
-                        break;
-
-                    case "b":
-
-                        break;
-
-                    case "c":
-
-                        break;
-
-                    case "d":
-
-                        break;
-
-                    case "q":
-                        quitDataRecorderMenu = true;
-                        break;
-
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
-                        DisplayContinuePrompt();
-                        break;
-                }
-
-            } while (!quitDataRecorderMenu);
-        }
-        /// <summary>
-        /// *****************************************************************
-        /// *                     Alarm System Menu                         *
-        /// *****************************************************************
-        /// </summary>
-        static void AlarmSystemDisplayMenuScreen(Finch finchRobot)
-        {
-            Console.CursorVisible = true;
-
-            bool quitAlarmSystemMenu = false;
-            string menuChoice;
-
-            do
-            {
-                DisplayScreenHeader("Alarm System Menu");
-                Console.WriteLine("This module is currently under development and some choices may not work.");
-                //
-                // get user menu choice
-                //
-                Console.WriteLine("\ta) Under Construction ");
-                Console.WriteLine("\tb) Under Construction ");
-                Console.WriteLine("\tc) Under Construction ");
-                Console.WriteLine("\td) Under Construction ");
-                Console.WriteLine("\tq) Main Menu");
-                Console.Write("\t\tEnter Choice:");
-                menuChoice = Console.ReadLine().ToLower();
-
-                //
-                // process user menu choice
-                //
-                switch (menuChoice)
-                {
-                    case "a":
-
-                        break;
-
-                    case "b":
-
-                        break;
-
-                    case "c":
-
-                        break;
-
-                    case "d":
-
-                        break;
-
-                    case "q":
-                        quitAlarmSystemMenu = true;
-                        break;
-
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
-                        DisplayContinuePrompt();
-                        break;
-                }
-
-            } while (!quitAlarmSystemMenu);
-        }
-        /// <summary>
-        /// *****************************************************************
-        /// *                     User Programming Menu                     *
-        /// *****************************************************************
-        /// </summary>
-        static void UserProgrammingDisplayMenuScreen(Finch finchRobot)
-        {
-            Console.CursorVisible = true;
-
-            bool quitUserProgrammingMenu = false;
-            string menuChoice;
-
-            do
-            {
-                DisplayScreenHeader("User Programming Menu");
-                Console.WriteLine("This module is currently under development and some choices may not work.");
-                //
-                // get user menu choice
-                //
-                Console.WriteLine("\ta) Under Construction ");
-                Console.WriteLine("\tb) Under Construction ");
-                Console.WriteLine("\tc) Under Construction ");
-                Console.WriteLine("\td) Under Construction ");
-                Console.WriteLine("\tq) Main Menu");
-                Console.Write("\t\tEnter Choice:");
-                menuChoice = Console.ReadLine().ToLower();
-
-                //
-                // process user menu choice
-                //
-                switch (menuChoice)
-                {
-                    case "a":
-
-                        break;
-
-                    case "b":
-
-                        break;
-
-                    case "c":
-
-                        break;
-
-                    case "d":
-
-                        break;
-
-                    case "q":
-                        quitUserProgrammingMenu = true;
-                        break;
-
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
-                        DisplayContinuePrompt();
-                        break;
-                }
-
-            } while (!quitUserProgrammingMenu);
-        }
-        /// <summary>
-        /// *****************************************************************
         /// *               Talent Show > Light and Sound                   *
         /// *****************************************************************
         /// </summary>
@@ -439,7 +255,7 @@ namespace Project_FinchControl
         }
         /// <summary>
         /// *****************************************************************
-        /// *               Talent Show > Mixing It Up                             *
+        /// *               Talent Show > Mixing It Up                      *
         /// *****************************************************************
         /// </summary>
         /// <param name="finchRobot">finch robot object</param>
@@ -659,6 +475,351 @@ namespace Project_FinchControl
 
         }
 
+        #endregion
+
+        #region DATA RECORDER
+
+        /// <summary>
+        /// *****************************************************************
+        /// *                     Data Recorder Menu                        *
+        /// *****************************************************************
+        /// </summary>
+        static void DataRecorderDisplayMenuScreen(Finch finchRobot)
+        {
+
+            int numberOfDataPoints = 0;
+            double dataPointFrequency = 0;
+            double[] temperatures = null;
+
+            Console.CursorVisible = true;
+
+            bool quitDataRecorderMenu = false;
+            string menuChoice;
+
+            do
+            {
+                DisplayScreenHeader("Data Recorder Menu");
+                //
+                // get user menu choice
+                //
+                Console.WriteLine("\ta) Number of Data Points ");
+                Console.WriteLine("\tb) Frequency of Data Points ");
+                Console.WriteLine("\tc) Get Data ");
+                Console.WriteLine("\td) Show Data ");
+                Console.WriteLine("\tq) Main Menu");
+                Console.Write("\t\tEnter Choice:");
+                menuChoice = Console.ReadLine().ToLower();
+
+                //
+                // process user menu choice
+                //
+                switch (menuChoice)
+                {
+                    case "a":
+                       numberOfDataPoints = DataRecorderNumberOfDataPoints();
+                        break;
+
+                    case "b":
+                        dataPointFrequency = DataRecorderFrequencyOfData();
+                        break;
+
+                    case "c":
+                        temperatures = DataRecorderGetData(numberOfDataPoints, dataPointFrequency, finchRobot);
+                        break;
+
+                    case "d":
+                        DataRecorderDisplayData(temperatures);
+                        break;
+
+                    case "q":
+                        quitDataRecorderMenu = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
+                        DisplayContinuePrompt();
+                        break;
+                }
+
+            } while (!quitDataRecorderMenu);
+        }
+
+        /// <summary>
+        /// *****************************************************************
+        /// *           Data Recorder >  Number of Data Points              *
+        /// *****************************************************************
+        /// </summary>
+        static int DataRecorderNumberOfDataPoints()
+        {
+            int numberOfDataPoints;
+            string userResponse;
+
+            DisplayScreenHeader("Number of Data Points");
+
+            Console.WriteLine("Number of Data Points: "); 
+            userResponse = Console.ReadLine();
+            Console.WriteLine($"You have chosen {userResponse} number of data points.");
+
+            int.TryParse(userResponse, out numberOfDataPoints);
+            DisplayContinuePrompt();
+
+
+            return numberOfDataPoints;
+        }
+
+        /// <summary>
+        /// *****************************************************************
+        /// *           Data Recorder >  Frequency of Data Points           *
+        /// *****************************************************************
+        /// </summary>
+        static double DataRecorderFrequencyOfData()
+        {
+            double dataPointFrequency;
+            string userResponse;
+
+            DisplayScreenHeader("Frequency of Data Points");
+
+            Console.WriteLine("Frequency of Data Points: ");
+            userResponse = Console.ReadLine();
+            Console.WriteLine($"You have chosen {userResponse} number of frequency data points.");
+
+           double.TryParse(userResponse, out dataPointFrequency);
+
+
+            DisplayContinuePrompt();
+
+
+            return dataPointFrequency;
+        }
+
+        /// <summary>
+        /// *****************************************************************
+        /// *                 Data Recorder >  Get Data                     *
+        /// *****************************************************************
+        static double[] DataRecorderGetData(int numberOfDataPoints, double dataPointFrequency, Finch finchRobot)
+        {
+            double[] temperatures = new double[numberOfDataPoints];
+            int lightsensor;
+
+            DisplayScreenHeader("Get Data");
+
+            Console.WriteLine($"Number of Data Point: {numberOfDataPoints}");
+            Console.WriteLine($"Data point Frequency: {dataPointFrequency}");
+            Console.WriteLine();
+            Console.WriteLine("The Finch Robot is ready to begin recording temperatures and light sensors.");
+            DisplayContinuePrompt();
+
+            for (int index = 0; index < numberOfDataPoints; index++)
+            {
+                temperatures[index] = finchRobot.getTemperature();
+                Console.WriteLine($"Reading {index + 1}: {temperatures[index].ToString("n2")}");
+                int waitInSeconds = (int)(dataPointFrequency * 1000);
+                finchRobot.wait(waitInSeconds);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Now reading Left Light Sensors.");
+
+            for (int index = 0; index < numberOfDataPoints; index++)
+            {
+                lightsensor = finchRobot.getLeftLightSensor();
+                Console.WriteLine($"Reading Left Light Sensor{index + 1}: {lightsensor.ToString("n2")}");
+                int waitInSeconds = (int)(lightsensor * 1000);
+                finchRobot.wait(waitInSeconds);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Now reading Right Light Sensors.");
+
+
+            for (int index = 0; index < numberOfDataPoints; index++)
+            {
+                lightsensor = finchRobot.getRightLightSensor();
+                Console.WriteLine($"Reading Right Light Sensor{index + 1}: {lightsensor.ToString("n2")}");
+                int waitInSeconds = (int)(lightsensor * 1000);
+                finchRobot.wait(waitInSeconds);
+            }
+
+
+            DisplayContinuePrompt();
+
+            return temperatures;
+        }
+
+
+
+        /// <summary>
+        /// *****************************************************************
+        /// *                 Data Recorder >  Show Data                    *
+        /// *****************************************************************
+        /// </summary>
+        static void DataRecorderDisplayData(double[] temperatures)
+        {
+            DisplayScreenHeader("Show Data");
+
+            double fahrenheit;
+            double celsius = 0;
+
+            Console.WriteLine(
+                "Recording #".PadLeft(20) +
+                "Temperature".PadLeft(20)
+                );
+
+            Console.WriteLine(
+                "-----------".PadLeft(20) +
+                "-----------".PadLeft(20)
+                );
+
+            for (int index = 0; index < temperatures.Length; index++)
+            {
+
+                Console.WriteLine(
+                    (index + 1).ToString().PadLeft(15) +
+                    temperatures[index].ToString("n2").PadLeft(22)
+                    );
+
+            }
+
+            Console.WriteLine("Celsius: " + celsius);
+            fahrenheit = (celsius * 9) / 5 + 32;
+            Console.WriteLine("Fahrenehit: " + fahrenheit);
+
+
+            DisplayContinuePrompt();
+                    
+        }
+
+        #endregion
+
+        #region ALARM SYSTEM
+
+        /// <summary>
+        /// *****************************************************************
+        /// *                     Alarm System Menu                         *
+        /// *****************************************************************
+        /// </summary>
+        static void AlarmSystemDisplayMenuScreen(Finch finchRobot)
+        {
+            Console.CursorVisible = true;
+
+            bool quitAlarmSystemMenu = false;
+            string menuChoice;
+
+            do
+            {
+                DisplayScreenHeader("Alarm System Menu");
+                Console.WriteLine("This module is currently under development and some choices may not work.");
+                //
+                // get user menu choice
+                //
+                Console.WriteLine("\ta) Under Construction ");
+                Console.WriteLine("\tb) Under Construction ");
+                Console.WriteLine("\tc) Under Construction ");
+                Console.WriteLine("\td) Under Construction ");
+                Console.WriteLine("\tq) Main Menu");
+                Console.Write("\t\tEnter Choice:");
+                menuChoice = Console.ReadLine().ToLower();
+
+                //
+                // process user menu choice
+                //
+                switch (menuChoice)
+                {
+                    case "a":
+
+                        break;
+
+                    case "b":
+
+                        break;
+
+                    case "c":
+
+                        break;
+
+                    case "d":
+
+                        break;
+
+                    case "q":
+                        quitAlarmSystemMenu = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
+                        DisplayContinuePrompt();
+                        break;
+                }
+
+            } while (!quitAlarmSystemMenu);
+        }
+        #endregion
+
+        #region USER PROGRAMMING
+
+        /// <summary>
+        /// *****************************************************************
+        /// *                     User Programming Menu                     *
+        /// *****************************************************************
+        /// </summary>
+        static void UserProgrammingDisplayMenuScreen(Finch finchRobot)
+        {
+            Console.CursorVisible = true;
+
+            bool quitUserProgrammingMenu = false;
+            string menuChoice;
+
+            do
+            {
+                DisplayScreenHeader("User Programming Menu");
+                Console.WriteLine("This module is currently under development and some choices may not work.");
+                //
+                // get user menu choice
+                //
+                Console.WriteLine("\ta) Under Construction ");
+                Console.WriteLine("\tb) Under Construction ");
+                Console.WriteLine("\tc) Under Construction ");
+                Console.WriteLine("\td) Under Construction ");
+                Console.WriteLine("\tq) Main Menu");
+                Console.Write("\t\tEnter Choice:");
+                menuChoice = Console.ReadLine().ToLower();
+
+                //
+                // process user menu choice
+                //
+                switch (menuChoice)
+                {
+                    case "a":
+
+                        break;
+
+                    case "b":
+
+                        break;
+
+                    case "c":
+
+                        break;
+
+                    case "d":
+
+                        break;
+
+                    case "q":
+                        quitUserProgrammingMenu = true;
+                        break;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("\tPlease enter a letter for the menu choice.");
+                        DisplayContinuePrompt();
+                        break;
+                }
+
+            } while (!quitUserProgrammingMenu);
+        }
 
         #endregion
 
