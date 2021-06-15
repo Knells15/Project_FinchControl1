@@ -18,7 +18,7 @@ namespace Project_FinchControl
         //              opening and closing screens, and the menu
         // Author: Nelson, Kelley
         // Dated Created: 6/1/2021
-        // Last Modified: 6/6/2021
+        // Last Modified: 6/14/2021
         //
         // **************************************************
         /// <summary>
@@ -584,9 +584,8 @@ namespace Project_FinchControl
             userResponse = Console.ReadLine();
             Console.WriteLine($"You have chosen {userResponse} number of frequency data points.");
 
-           double.TryParse(userResponse, out dataPointFrequency);
-
-
+            double.TryParse(userResponse, out dataPointFrequency);
+            
             DisplayContinuePrompt();
 
 
